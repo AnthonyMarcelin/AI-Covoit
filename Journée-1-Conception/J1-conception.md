@@ -6,21 +6,22 @@ La mise en page sur ce markdown ne fonctionne pas partout ( pas le temps de m'oc
 
 Sur la partie **conception** on attend un ou plusieurs documents présentants :
 
-- [ ] Architecture
-  - [ ] Choisir et justifier l'architecture de l'application complète
-  - [ ] Choisir et justifier les technos (framework, librairies, db, etc.)
-- [ ] Analyse du besoin
-  - [ ] Écrire les user stories et / ou un schéma des cas d'utilisation (use cases)
-- [ ] Modélisation
-  - [ ] Schéma d'architecture
-  - [ ] Un MCD peut aider...
-  - [ ] ERD (Diagramme d'entités associations)
+- [x] Architecture
+  - [x] Choisir et justifier l'architecture de l'application complète
+  - [x] Choisir et justifier les technos (framework, librairies, db, etc.)
+- [x] Analyse du besoin
+  - [x] Écrire les user stories et / ou un schéma des cas d'utilisation (use cases)
+- [x] Modélisation
+  - [x] Schéma d'architecture
+  - [x] Un MCD peut aider...
+  - [x] ERD (Diagramme d'entités associations)
 - [ ] Plan de test
   - [ ] Définir les règles pour les tests pour l'inscription et la connexion
 - [ ] Relecture, `commit` et `push`
 
 # En vrac
 
+On va partir sur une architecture en microservices. Une pour l'authentification, une pour l'API, une pour la bdd. Cela nous permettra de la déployer plus facilement. Et dans le cas d'une image dockerisée pour la bdd, de faciliter la scalabilité horizontale pour faire face aux demandes de connexions pour un coût moindre.
 
 ## Tables
 - Utilisateur (( avec booleen si passager ou conducteur) => on annule pour le moment, trop compliqué à mettre en place dans un laps de temps aussi court )
