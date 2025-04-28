@@ -1,5 +1,8 @@
 La mise en page sur ce markdown ne fonctionne pas partout ( pas le temps de m'occuper de ce détail )
 
+Les tables sont à modifier : Oubli de certains champs en unique dont email
+
+
 # Conception
 
 ℹ️ *J1 : en classe à 9h*
