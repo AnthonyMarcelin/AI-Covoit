@@ -1,19 +1,19 @@
 services:
 
-  # authentification:
-  #   container_name: authentification
-  #   build:
-  #     context: .
-  #     dockerfile: ./authentification/Dockerfile
-  #   ports:
-  #     - "3001:3000"
-  #   volumes:
-  #     - ./authentification:/app
-  #   environment:
-  #     - API_SERVICE_URL=http://service_api:3000
-  #     - JWT_SECRET=abcde123456
-  #   depends_on:
-  #     - userdb
+  authentification:
+    container_name: authentification
+    build:
+      context: .
+      dockerfile: ./authentification/Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./authentification:/app
+    environment:
+      - API_SERVICE_URL=http://service_api:3000
+      - JWT_SECRET=abcde123456
+    depends_on:
+      - userdb
   
   service_api:
     container_name: service_api

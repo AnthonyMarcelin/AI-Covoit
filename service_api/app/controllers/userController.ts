@@ -3,6 +3,26 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 
 const userController = {
+
+  async findByEmail(req: Request, res: Response) {
+    const { email } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(email)) {
+      res.status(400).json({ message: " ID non valide "});
+      return;
+    }
+
+    try {
+      const user = await User.findOne({ email });
+      if (!user) {
+        return res.status(404).json({ message: "Utilisateur non trouvé" });
+      }
+      res.status(200).json({ user });
+    } catch (error) {
+      res.status(500).json({ message: "Erreur serveur" });
+    }
+  },
+
   async getUsers(req: Request, res: Response) {
     try {
       const users = await User.find();

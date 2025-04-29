@@ -39,7 +39,7 @@ const mainController = {
     const { email, password } = req.body;
     log("login", req.body);
 
-    const response = await fetch(`${API_SERVICE_URL}/users/${email}`, {
+    const response = await fetch(`${API_SERVICE_URL}/users/email/${email}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -70,8 +70,8 @@ const mainController = {
     }
   },
 
-  async postRegister(req: Request, res: Response) {
-    const { firstname, lastname, email, password, description, image } =
+  async register(req: Request, res: Response) {
+    const { firstname, lastname, email, password, rol_id } =
       req.body;
     // console.log(req.body);
 
@@ -83,6 +83,29 @@ const mainController = {
       console.log("erreur lors du hash");
       res.json({ err: "Merci de réessayer" }).status(500);
     }
+
+
+
+    // A changer pour fetch sur service_api
+
+    // const newUser = new User({
+    //   firstname: firstname,
+    //   lastname,
+    //   email,
+    //   password: hashedPassword,
+    //   description,
+    //  
+    // });
+
+    // try {
+    //   await newUser.save();
+    //   console.log(newUser);
+    //   res.json({ user: newUser }).status(201)
+    // } catch (err) {
+    //   console.log(err);
+    //   res.status(500)
+    // }
+
   },
 };
 
