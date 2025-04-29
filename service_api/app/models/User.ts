@@ -5,6 +5,9 @@ mongoose.connect(mongoURL);
 
 const userSchema = new mongoose.Schema(
   {
+    id: {
+        type: Number,
+    },
     firstname: {
       type: String,
       required: true,
