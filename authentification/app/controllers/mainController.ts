@@ -71,10 +71,8 @@ const mainController = {
   },
 
   async register(req: Request, res: Response) {
-    const { firstname, lastname, email, password, rol_id } =
-      req.body;
+    const { firstname, lastname, email, password, rol_id } = req.body;
     // console.log(req.body);
-
 
     const hashedPassword = await hash(password.toString());
     // console.log(hashedPassword);
@@ -84,8 +82,6 @@ const mainController = {
       res.json({ err: "Merci de réessayer" }).status(500);
     }
 
-
-
     // A changer pour fetch sur service_api
 
     // const newUser = new User({
@@ -94,7 +90,7 @@ const mainController = {
     //   email,
     //   password: hashedPassword,
     //   description,
-    //  
+    //
     // });
 
     // try {
@@ -105,7 +101,6 @@ const mainController = {
     //   console.log(err);
     //   res.status(500)
     // }
-
   },
 };
 

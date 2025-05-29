@@ -3,11 +3,12 @@ services:
     container_name: authentification
     build:
       context: ./authentification
-      dockerfile: ./authentification/Dockerfile
+      dockerfile: Dockerfile
     ports:
       - "3001:3000"
     volumes:
       - ./authentification:/app
+      - /app/node_modules
     environment:
       - API_SERVICE_URL=http://service_api:3000
       - JWT_SECRET=abcde123456
@@ -18,9 +19,10 @@ services:
     container_name: service_api
     build:
       context: ./service_api
-      dockerfile: ./service_api/Dockerfile
+      dockerfile: Dockerfile
     volumes:
       - ./service_api:/app
+      - /app/node_modules
     ports:
       - "3002:3000"
     environment:
