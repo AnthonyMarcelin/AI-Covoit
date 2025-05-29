@@ -4,13 +4,12 @@ import userController from "../controllers/userController";
 const userRouter = Router();
 
 userRouter.get("/", userController.getUsers);
-// userRouter.get("/email/:email", userController.findByEmail);
+userRouter.get("/email/:email", userController.findByEmail);
 userRouter.post("/", userController.createUser);
 
 // le update et delete est down du au typage, perdu 1h30 dessus
 // userRouter.put("/:id", userController.updateUser);
 // userRouter.delete("/:id", userController.deleteUser);
-
 
 // userRouter.get("/", userController.list);
 // userRouter.get("/:email", userController.findByEmail);

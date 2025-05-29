@@ -3,19 +3,18 @@ import { Request, Response } from "express";
 import mongoose from "mongoose";
 
 const userController = {
-
   async findByEmail(req: Request, res: Response) {
     const { email } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(email)) {
-      res.status(400).json({ message: " ID non valide "});
+      res.status(400).json({ message: " ID non valide " });
       return;
     }
 
     try {
       const user = await User.findOne({ email });
       if (!user) {
-        return res.status(404).json({ message: "Utilisateur non trouvé" });
+        res.status(404).json({ message: "Utilisateur non trouvé" });
       }
       res.status(200).json({ user });
     } catch (error) {
@@ -66,7 +65,7 @@ const userController = {
     const { firstname, lastname, image, description, role_id } = req.body;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(400).json({ message: " ID non valide "});
+      res.status(400).json({ message: " ID non valide " });
       return;
     }
 
@@ -101,18 +100,16 @@ const userController = {
     const { id } = req.params;
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
-      res.status(400).json({ message: " ID non valide "});
+      res.status(400).json({ message: " ID non valide " });
       return;
     }
 
     try {
       const deletedUser = await User.findByIdAndDelete(id);
       if (!deletedUser) {
-        return res
-          .status(404)
-          .json({
-            message: "Utilisateur introuvable, suppression impossible.",
-          });
+        return res.status(404).json({
+          message: "Utilisateur introuvable, suppression impossible.",
+        });
       }
 
       res.status(200).json({ message: "Utilisateur supprimé avec succès." });
