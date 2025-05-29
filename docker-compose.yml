@@ -1,0 +1,46 @@
+services:
+  authentification:
+    container_name: authentification
+    build:
+      context: ./authentification
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./authentification:/app
+      - /app/node_modules
+    environment:
+      - API_SERVICE_URL=http://service_api:3000
+      - JWT_SECRET=abcde123456
+    depends_on:
+      - userdb
+
+  service_api:
+    container_name: service_api
+    build:
+      context: ./service_api
+      dockerfile: Dockerfile
+    volumes:
+      - ./service_api:/app
+      - /app/node_modules
+    ports:
+      - "3002:3000"
+    environment:
+      - MONGO_URL=mongodb://userdb:27017/covoit
+      - PORT=3000
+    depends_on:
+      - userdb
+
+  userdb:
+    image: mongo:latest
+    container_name: userdb
+    command: ["mongod", "--config", "/etc/mongo/mongod.conf"]
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: covoit
+    volumes:
+      - ./mongodb.conf:/etc/mongo/mongod.conf
+      - ./init-users.js:/docker-entrypoint-initdb.d/init-users.js:ro
+      - /data/db
